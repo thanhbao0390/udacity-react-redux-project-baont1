@@ -35,13 +35,13 @@ export function Question() {
             <div className='qs-item-author'>Author: {question.author}</div>
             <div className='qs-item-timestamp'>{new Date(question.timestamp).toLocaleDateString("en-US")} {new Date(question.timestamp).toLocaleTimeString("en-US")}</div>
             <div>
-              <div>{question.optionOne.text}</div>
-              <div>{question.optionOne.votes}</div>
+              <div>Option 1: {question.optionOne.text}</div>
+              <div><progress id="file" value={question.optionOne.votes.length} max={question.optionOne.votes.length + question.optionTwo.votes.length}></progress> ({(question.optionOne.votes.length * 100) / (question.optionOne.votes.length + question.optionTwo.votes.length)})% [{question.optionOne.votes.join(", ")}]</div>
             </div>
             <div>
-              <div>{question.optionTwo.text}</div>
-              <div>{question.optionTwo.votes}</div></div>
-
+              <div>Option 2: {question.optionTwo.text}</div>
+              <div><progress id="file" value={question.optionTwo.votes.length} max={question.optionOne.votes.length + question.optionTwo.votes.length}></progress> ({(question.optionTwo.votes.length * 100) / (question.optionOne.votes.length + question.optionTwo.votes.length)})% [{question.optionTwo.votes.join(", ")}]</div>
+            </div>
           </div>
         ))}
       </div>
