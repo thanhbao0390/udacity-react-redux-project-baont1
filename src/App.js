@@ -3,11 +3,30 @@ import React from 'react';
 // import { Counter } from './features/counter/Counter';
 import './App.css';
 import { Question } from './features/question/Question';
+import { QuestionAdd } from './features/question/QuestionAdd';
+
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
 
 function App() {
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Question />,
+    },
+    {
+      path: "/add",
+      element: <QuestionAdd />,
+    },
+  ]);
+
   return (
     <div className="App">
-      <Question />
+      <RouterProvider router={router} />
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         

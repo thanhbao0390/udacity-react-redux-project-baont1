@@ -8,7 +8,9 @@ import {
   // incrementIfOdd,
   selectQuestion,
 } from './questionSlice';
-// import styles from './Counter.module.css';
+import {
+  Link,
+} from "react-router-dom";
 
 export function Question() {
   const questions = useSelector(selectQuestion);
@@ -27,6 +29,9 @@ export function Question() {
   return (
     <div><h4>List Question</h4>
       <div>
+        <div className="qs-btnAdd">
+          <Link to={`/add`}>Add Question</Link>
+        </div>
         <div className='qs-tabs'>
           <button onClick={() => changeTab(1)} className={(tabs === 1) ? 'qs-tabs-unanswered qs-tabs-unanswered-selected' : 'qs-tabs-unanswered'}>Unanswered</button>
           <button onClick={() => changeTab(0)} className={(tabs !== 1) ? 'qs-tabs-answered qs-tabs-answered-selected' : 'qs-tabs-answered'}>Answered</button>
