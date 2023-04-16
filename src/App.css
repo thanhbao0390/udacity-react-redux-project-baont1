@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -24,7 +24,7 @@
 
 .App-link {
   color: rgb(112, 76, 182);
-}
+} */
 
 @keyframes App-logo-float {
   0% {
@@ -47,16 +47,61 @@
 .qs-list-item {
   text-align: left;
   border: 1px solid rgb(129, 155, 129);
-  margin: 10px 0px;
+  margin: 0px 0px 10px 0px;
   padding: 20px;
   background-color: rgb(227, 231, 227);
+  cursor: pointer;
 }
 .qs-item-title {
   font-size: larger;
 }
 .qs-item-author {
   font-size: medium;
+  margin-bottom: 0px;
 }
 .qs-item-timestamp {
   font-size: small;
 }
+.qs-list-item-top {
+  display: flex;
+  justify-content: space-between;
+
+}
+.qs-item-option {
+  margin: 20px;
+}
+.qs-tabs {
+  
+}
+.qs-tabs-unanswered {
+  display: inline-block;
+  width: 50%;
+  background-color: rgb(209, 248, 211);
+  padding: 10px 0px;
+  border: 0px;
+  cursor: pointer;
+}
+.qs-tabs-unanswered-selected {
+  font-weight: bold;
+}
+.qs-tabs-answered {
+  display: inline-block;
+  width: 50%;
+  background-color: rgb(218, 226, 218);
+  padding: 10px 0px;
+  border: 0px;
+  cursor: pointer;
+}
+.qs-tabs-answered-selected {
+  font-weight: bold;
+}
+
+.qs-contents-unanswered {
+  padding: 10px 10px 10px 10px;
+  background-color: rgb(209, 248, 211);
+}
+.qs-contents-answered {
+  padding: 10px 10px 10px 10px;
+  background-color: rgb(218, 226, 218);
+}
+
