@@ -4,6 +4,7 @@ import React from 'react';
 import './App.css';
 import { Question } from './features/question/Question';
 import { QuestionAdd } from './features/question/QuestionAdd';
+import { QuestionVote } from './features/question/QuestionVote';
 
 import {
   createBrowserRouter,
@@ -13,14 +14,20 @@ import {
 
 function App() {
 
+  const user = 'sarahedo';
+
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Question />,
+      element: <Question user={user} />,
     },
     {
       path: "/add",
-      element: <QuestionAdd />,
+      element: <QuestionAdd user={user} />,
+    },
+    {
+      path: "/vote/:id",
+      element: <QuestionVote user={user} />,
     },
   ]);
 

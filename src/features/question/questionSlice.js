@@ -1,4 +1,52 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+let users = {
+  sarahedo: {
+    id: 'sarahedo',
+    password: 'password123',
+    name: 'Sarah Edo',
+    avatarURL: null,
+    answers: {
+      "8xf0y6ziyjabvozdd253nd": 'optionOne',
+      "6ni6ok3ym7mf1p33lnez": 'optionOne',
+      "am8ehyc8byjqgar0jgpub9": 'optionTwo',
+      "loxhs1bqm25b708cmbf3g": 'optionTwo'
+    },
+    questions: ['8xf0y6ziyjabvozdd253nd', 'am8ehyc8byjqgar0jgpub9']
+  },
+  tylermcginnis: {
+    id: 'tylermcginnis',
+    password: 'abc321',
+    name: 'Tyler McGinnis',
+    avatarURL: null,
+    answers: {
+      "vthrdm985a262al8qx3do": 'optionOne',
+      "xj352vofupe1dqz9emx13r": 'optionTwo',
+    },
+    questions: ['loxhs1bqm25b708cmbf3g', 'vthrdm985a262al8qx3do'],
+  },
+  mtsamis: {
+    id: 'mtsamis',
+    password: 'xyz123',
+    name: 'Mike Tsamis',
+    avatarURL: null,
+    answers: {
+      "xj352vofupe1dqz9emx13r": 'optionOne',
+      "vthrdm985a262al8qx3do": 'optionTwo',
+      "6ni6ok3ym7mf1p33lnez": 'optionOne'
+    },
+    questions: ['6ni6ok3ym7mf1p33lnez', 'xj352vofupe1dqz9emx13r'],
+  },
+  zoshikanlu: {
+    id: 'zoshikanlu',
+    password: 'pass246',
+    name: 'Zenobia Oshikanlu',
+    avatarURL: null,
+    answers: {
+      "xj352vofupe1dqz9emx13r": 'optionOne',
+    },
+    questions: [],
+  }
+}
 
 let questions = {
   "8xf0y6ziyjabvozdd253nd": {
@@ -107,15 +155,47 @@ export const questionSlice = createSlice({
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
-    increment: (state) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      // state.value += 1;
+    addQuestion: (state, action) => {
+      const formattedQuestion = formatQuestion(action.payload)
+      // console.log(formattedQuestion);
+      
+      // // state = current(state)
+      // console.log(state);
+      state.value = {
+        ...state.value,
+        [formattedQuestion.id]: formattedQuestion
+      }
+      // console.log(state);
     },
-    decrement: (state) => {
-      // state.value -= 1;
+    voteQuestion: (state, action) => {
+      // Object.keys(state.question.value).forEach(function (key, index) {
+      //   if(key === id)
+      //     return state.question.value[key];
+      // })
+      const qid = action.payload.qid;
+      const answer = action.payload.answer;
+      const authedUser = action.payload.authedUser;
+      console.log(qid);
+      console.log(answer);
+      console.log(authedUser);
+      console.log(state.value);
+
+      // console.log(current(state));
+      // state = current(state);
+      // console.log(state);
+      console.log(state.value);
+      state.value = {
+        ...state.value,
+        [qid]: {
+          ...state.value[qid],
+          [answer]: {
+            ...state.value[qid][answer],
+            votes: state.value[qid][answer].votes.concat([authedUser])
+          }
+        }
+      }
+
+      console.log(state.value);
     },
     // Use the PayloadAction type to declare the contents of `action.payload`
     incrementByAmount: (state, action) => {
@@ -140,17 +220,96 @@ export const questionSlice = createSlice({
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
 export const selectQuestion = (state) => {
-  let questions =[];
+  let questions = [];
 
   Object.keys(state.question.value).forEach(function (key, index) {
     questions.push(state.question.value[key]);
   })
   return questions;
 }
-export function _getQuestions () {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve({...questions}), 1000)
+
+// export const getQuestion = (state, id) => {
+//   console.log(id);
+//   let question;
+//   Object.keys(state.question.value).forEach(function (key, index) {
+//     if (key === id)
+//       question = state.question.value[key];
+//   })
+//   return question;
+// }
+
+function generateUID() {
+  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+}
+
+function formatQuestion({ optionOneText, optionTwoText, author }) {
+  return {
+    id: generateUID(),
+    timestamp: Date.now(),
+    author,
+    optionOne: {
+      votes: [],
+      text: optionOneText,
+    },
+    optionTwo: {
+      votes: [],
+      text: optionTwoText,
+    }
+  }
+}
+
+export function _saveQuestion(question) {
+  return new Promise((resolve, reject) => {
+    if (!question.optionOneText || !question.optionTwoText || !question.author) {
+      reject("Please provide optionOneText, optionTwoText, and author");
+    }
+
+    const formattedQuestion = formatQuestion(question)
+    setTimeout(() => {
+      questions = {
+        ...questions,
+        [formattedQuestion.id]: formattedQuestion
+      }
+
+      resolve(formattedQuestion)
+    }, 1000)
   })
 }
+
+export function _saveQuestionAnswer({ authedUser, qid, answer }) {
+  return new Promise((resolve, reject) => {
+    if (!authedUser || !qid || !answer) {
+      reject("Please provide authedUser, qid, and answer");
+    }
+
+    setTimeout(() => {
+      users = {
+        ...users,
+        [authedUser]: {
+          ...users[authedUser],
+          answers: {
+            ...users[authedUser].answers,
+            [qid]: answer
+          }
+        }
+      }
+
+      questions = {
+        ...questions,
+        [qid]: {
+          ...questions[qid],
+          [answer]: {
+            ...questions[qid][answer],
+            votes: questions[qid][answer].votes.concat([authedUser])
+          }
+        }
+      }
+
+      resolve(true)
+    }, 500)
+  })
+}
+
+export const { addQuestion, voteQuestion, } = questionSlice.actions;
 
 export default questionSlice.reducer;

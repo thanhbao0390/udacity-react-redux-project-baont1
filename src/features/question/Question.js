@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   // decrement,
   // increment,
@@ -12,12 +12,12 @@ import {
   Link,
 } from "react-router-dom";
 
-export function Question() {
+export function Question({ user }) {
   const questions = useSelector(selectQuestion);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [tabs, setTabs] = useState(1);
-  const user = 'sarahedo';
-  
+  // const user = 'sarahedo';
+
   const changeTab = (value) => {
     setTabs(value);
   }
@@ -39,8 +39,11 @@ export function Question() {
         {(tabs === 1) ? (
           <div className='qs-contents-unanswered'>
             <div className='qs-list'>
-              {questionsUnAnswered.map((question) => (
-                <div key={question.id} className='qs-list-item'>
+              {questionsUnAnswered.map((question) => {
+                let total = question.optionOne.votes.length + question.optionTwo.votes.length;
+                let rateOptionOne = total ? Math.round(question.optionOne.votes.length * 100 / (total)) : 0;
+                let rateOptionTwo = total ? Math.round(question.optionTwo.votes.length * 100 / (total)) : 0;
+                return (<div key={question.id} className='qs-list-item'>
                   <div className='qs-list-item-top'>
                     {/* <div className='qs-item-title'>{question.id}</div> */}
                     <div className='qs-item-author'>Author: {question.author}</div>
@@ -48,21 +51,30 @@ export function Question() {
                   </div>
                   <div className='qs-item-option'>
                     <div>Option 1: {question.optionOne.text}</div>
-                    <div><progress id="file" value={question.optionOne.votes.length} max={question.optionOne.votes.length + question.optionTwo.votes.length}></progress> ({Math.round(question.optionOne.votes.length * 100 / (question.optionOne.votes.length + question.optionTwo.votes.length))}%) [{question.optionOne.votes.join(", ")}]</div>
+                    <div><progress id="file" value={question.optionOne.votes.length} max={total}></progress> {rateOptionOne}%
+                      ({question.optionOne.votes.length}/{total})</div>
+                    <div>[{question.optionOne.votes.join(", ")}]</div>
                   </div>
                   <div className='qs-item-option'>
                     <div>Option 2: {question.optionTwo.text}</div>
-                    <div><progress id="file" value={question.optionTwo.votes.length} max={question.optionOne.votes.length + question.optionTwo.votes.length}></progress> ({Math.round(question.optionTwo.votes.length * 100 / (question.optionOne.votes.length + question.optionTwo.votes.length))}%) [{question.optionTwo.votes.join(", ")}]</div>
+                    <div><progress id="file" value={question.optionTwo.votes.length} max={total}></progress> {rateOptionTwo}%
+                      ({question.optionTwo.votes.length}/{total})</div>
+                    <div>[{question.optionTwo.votes.join(", ")}]</div>
                   </div>
+                  <div><Link to={`/vote/${question.id}`}>Vote</Link></div>
                 </div>
-              ))}
+                )
+              })}
             </div>
           </div>
         ) : (
           <div className='qs-contents-answered'>
             <div className='qs-list'>
-              {questionsAnswered.map((question) => (
-                <div key={question.id} className='qs-list-item'>
+              {questionsAnswered.map((question) => {
+                let total = question.optionOne.votes.length + question.optionTwo.votes.length;
+                let rateOptionOne = total ? Math.round(question.optionOne.votes.length * 100 / (total)) : 0;
+                let rateOptionTwo = total ? Math.round(question.optionTwo.votes.length * 100 / (total)) : 0;
+                return (<div key={question.id} className='qs-list-item'>
                   <div className='qs-list-item-top'>
                     {/* <div className='qs-item-title'>{question.id}</div> */}
                     <div className='qs-item-author'>Author: {question.author}</div>
@@ -70,14 +82,19 @@ export function Question() {
                   </div>
                   <div className='qs-item-option'>
                     <div>Option 1: {question.optionOne.text}</div>
-                    <div><progress id="file" value={question.optionOne.votes.length} max={question.optionOne.votes.length + question.optionTwo.votes.length}></progress> ({Math.round(question.optionOne.votes.length * 100 / (question.optionOne.votes.length + question.optionTwo.votes.length))}%) [{question.optionOne.votes.join(", ")}]</div>
+                    <div><progress id="file" value={question.optionOne.votes.length} max={total}></progress> {rateOptionOne}%
+                      ({question.optionOne.votes.length}/{total})</div>
+                    <div>[{question.optionOne.votes.join(", ")}]</div>
                   </div>
                   <div className='qs-item-option'>
                     <div>Option 2: {question.optionTwo.text}</div>
-                    <div><progress id="file" value={question.optionTwo.votes.length} max={question.optionOne.votes.length + question.optionTwo.votes.length}></progress> ({Math.round(question.optionTwo.votes.length * 100 / (question.optionOne.votes.length + question.optionTwo.votes.length))}%) [{question.optionTwo.votes.join(", ")}]</div>
+                    <div><progress id="file" value={question.optionTwo.votes.length} max={total}></progress> {rateOptionTwo}%
+                      ({question.optionTwo.votes.length}/{total})</div>
+                    <div>[{question.optionTwo.votes.join(", ")}]</div>
                   </div>
                 </div>
-              ))}
+                )
+              })}
             </div>
           </div>
         )}
