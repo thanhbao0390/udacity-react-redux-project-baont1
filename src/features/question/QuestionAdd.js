@@ -8,8 +8,9 @@ import {
   useNavigate,
 } from "react-router-dom";
 import Header from "../common/Header";
+import UserInfo from "../common/UserInfo";
 
-export function QuestionAdd() {
+function QuestionAdd() {
   const { userInfo } = useSelector((state) => state.user)
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -35,19 +36,17 @@ export function QuestionAdd() {
 
   return (
     <div>
-      <div><Header /></div>
-      <h4>Add Question</h4>
-      <div className="qs-btnAdd">
-        <Link to={`/home`}>List Question</Link>
-      </div>
+      <div><UserInfo /></div>
+      <Header title='Add Question' link='/home' linkText='List Question' />
       <div className='qs-add'>
         <form >
           <div><div>Option 1: </div><input value={optionOne} onChange={handleChangeOptionOne} size={75} /></div>
           <div><div>Option 2: </div><input value={optionTwo} onChange={handleChangeOptionTwo} size={75} /></div>
           <input type="button" value="Save" onClick={() => add()} />
         </form>
-
       </div>
     </div>
   );
 }
+
+export default QuestionAdd

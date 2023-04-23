@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import { Question } from './features/question/Question';
-import { QuestionAdd } from './features/question/QuestionAdd';
-import { QuestionVote } from './features/question/QuestionVote';
+import QuestionList from './features/question/QuestionList';
+import QuestionAdd from './features/question/QuestionAdd';
+import QuestionVote from './features/question/QuestionVote';
 import ErrorPage from "./features/common/ErrorPage";
 import LoginScreen from "./features/common/LoginScreen";
 import ProtectedRoute from "./features/common/ProtectedRoute";
@@ -23,7 +23,7 @@ function App() {
         <Route path='/login' element={<LoginScreen />} />
         <Route path='/' element={<LoginScreen />} />
         <Route element={<ProtectedRoute />}>
-          <Route path='/home' element={<Question />} />
+          <Route path='/home' element={<QuestionList />} />
           <Route path='/add' element={<QuestionAdd />} />
           <Route path='/vote/:id' element={<QuestionVote />} />
         </Route>

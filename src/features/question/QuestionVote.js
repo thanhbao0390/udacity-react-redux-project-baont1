@@ -9,9 +9,10 @@ import {
   useNavigate,
 } from "react-router-dom";
 import Header from "../common/Header";
+import UserInfo from "../common/UserInfo";
 
 
-export function QuestionVote() {
+function QuestionVote() {
   const { userInfo } = useSelector((state) => state.user)
   let { id } = useParams();
   const navigate = useNavigate();
@@ -39,19 +40,17 @@ export function QuestionVote() {
 
   return (
     <div>
-      <div><Header /></div>
-      <h4>Vote Question</h4>
-      <div className="qs-btnAdd">
-        <Link to={`/home`}>List Question</Link>
-      </div>
+      <div><UserInfo /></div>
+      <Header title='Vote Question' link='/home' linkText='List Question' />
       <div className='qs-add'>
         <form >
           <div><label><input name='vote' type='radio' value='optionOne' onChange={handleChooseOptionOne} />Option 1: {question.optionOne.text}</label></div>
           <div><label><input name='vote' type='radio' value='optionTwo' onChange={handleChooseOptionTwo} />Option 2: {question.optionTwo.text}</label></div>
           <input type="button" value="Vote" onClick={() => choose()} />
         </form>
-
       </div>
     </div>
   );
 }
+
+export default QuestionVote
