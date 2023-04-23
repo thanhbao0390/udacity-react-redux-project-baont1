@@ -1,33 +1,31 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
-  // decrement,
-  // increment,
-  // incrementByAmount,
-  // incrementAsync,
-  // incrementIfOdd,
   selectQuestion,
-} from './questionSlice';
+} from '../../app/store/questionSlice';
 import {
   Link,
 } from "react-router-dom";
+import Header from "../common/Header";
 
-export function Question({ user }) {
+export function Question() {
   const questions = useSelector(selectQuestion);
-  // const dispatch = useDispatch();
+  const { userInfo } = useSelector((state) => state.user)
+
   const [tabs, setTabs] = useState(1);
-  // const user = 'sarahedo';
 
   const changeTab = (value) => {
     setTabs(value);
   }
 
   questions.sort((a, b) => b.timestamp - a.timestamp);
-  let questionsAnswered = questions.filter(question => question.optionOne.votes.includes(user) || question.optionTwo.votes.includes(user))
-  let questionsUnAnswered = questions.filter(question => !question.optionOne.votes.includes(user) && !question.optionTwo.votes.includes(user))
+  let questionsAnswered = questions.filter(question => question.optionOne.votes.includes(userInfo.id) || question.optionTwo.votes.includes(userInfo.id))
+  let questionsUnAnswered = questions.filter(question => !question.optionOne.votes.includes(userInfo.id) && !question.optionTwo.votes.includes(userInfo.id))
 
   return (
-    <div><h4>List Question</h4>
+    <div>
+      <div><Header /></div>
+      <h4>List Question</h4>
       <div>
         <div className="qs-btnAdd">
           <Link to={`/add`}>Add Question</Link>

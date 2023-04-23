@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
-  // decrement,
-  // increment,
-  // incrementByAmount,
-  // incrementAsync,
   addQuestion,
-  // selectQuestion,
-} from './questionSlice';
+} from '../../app/store/questionSlice';
 import {
   Link,
+  useNavigate,
 } from "react-router-dom";
+import Header from "../common/Header";
 
-export function QuestionAdd({ user }) {
-  // const questions = useSelector(selectQuestion);
+export function QuestionAdd() {
+  const { userInfo } = useSelector((state) => state.user)
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [optionOne, setOptionOne] = useState('');
   const [optionTwo, setOptionTwo] = useState('');
@@ -30,14 +28,17 @@ export function QuestionAdd({ user }) {
     if (!optionOne || !optionTwo) {
       alert('Please fill value text option!');
     } else {
-      dispatch(addQuestion({ optionOneText: optionOne, optionTwoText: optionTwo, author: user }))
+      dispatch(addQuestion({ optionOneText: optionOne, optionTwoText: optionTwo, author: userInfo.id }))
+      navigate("/home");
     }
   }
 
   return (
-    <div><h4>Add Question</h4>
+    <div>
+      <div><Header /></div>
+      <h4>Add Question</h4>
       <div className="qs-btnAdd">
-        <Link to={`/`}>List Question</Link>
+        <Link to={`/home`}>List Question</Link>
       </div>
       <div className='qs-add'>
         <form >

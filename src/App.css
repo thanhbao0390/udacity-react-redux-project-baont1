@@ -43,6 +43,10 @@
   margin: auto;
   
 }
+.login-contents {
+  margin: auto;
+  margin:50px;
+}
 .qs-add {
   border: 1px solid rgb(129, 155, 129);
   margin: 0px 0px 10px 0px;
@@ -62,7 +66,6 @@
   margin: 0px 0px 10px 0px;
   padding: 20px;
   background-color: rgb(227, 231, 227);
-  cursor: pointer;
 }
 .qs-item-title {
   font-size: larger;

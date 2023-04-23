@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
-import questionReducer from '../features/question/questionSlice';
-import { authentication } from './middleware/auth';
+// import counterReducer from './store/counterSlice';
+import questionReducer from './store/questionSlice';
+import userSlice from './store/userSlice';
+import { middleware } from './middleware/auth';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    // counter: counterReducer,
     question: questionReducer,
+    user: userSlice,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(authentication),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(middleware),
 });

@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  // decrement,
-  // increment,
-  // incrementByAmount,
-  // incrementAsync,
-  // getQuestion,
   voteQuestion,
-  // _saveQuestionAnswer,
-} from './questionSlice';
+} from '../../app/store/questionSlice';
 import {
   Link,
   useParams,
+  useNavigate,
 } from "react-router-dom";
+import Header from "../common/Header";
 
-export function QuestionVote({ user }) {
+
+export function QuestionVote() {
+  const { userInfo } = useSelector((state) => state.user)
   let { id } = useParams();
+  const navigate = useNavigate();
   const question = useSelector((state) => state.question.value[id]);
 
   const dispatch = useDispatch();
@@ -33,14 +32,17 @@ export function QuestionVote({ user }) {
     if (!vote) {
       alert('Please fill value text option!');
     } else {
-      dispatch(voteQuestion({authedUser: user, answer: vote, qid: id }))
+      dispatch(voteQuestion({ authedUser: userInfo.id, answer: vote, qid: id }))
+      navigate("/home");
     }
   }
 
   return (
-    <div><h4>Vote Question</h4>
+    <div>
+      <div><Header /></div>
+      <h4>Vote Question</h4>
       <div className="qs-btnAdd">
-        <Link to={`/`}>List Question</Link>
+        <Link to={`/home`}>List Question</Link>
       </div>
       <div className='qs-add'>
         <form >

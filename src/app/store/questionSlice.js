@@ -1,52 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-let users = {
-  sarahedo: {
-    id: 'sarahedo',
-    password: 'password123',
-    name: 'Sarah Edo',
-    avatarURL: null,
-    answers: {
-      "8xf0y6ziyjabvozdd253nd": 'optionOne',
-      "6ni6ok3ym7mf1p33lnez": 'optionOne',
-      "am8ehyc8byjqgar0jgpub9": 'optionTwo',
-      "loxhs1bqm25b708cmbf3g": 'optionTwo'
-    },
-    questions: ['8xf0y6ziyjabvozdd253nd', 'am8ehyc8byjqgar0jgpub9']
-  },
-  tylermcginnis: {
-    id: 'tylermcginnis',
-    password: 'abc321',
-    name: 'Tyler McGinnis',
-    avatarURL: null,
-    answers: {
-      "vthrdm985a262al8qx3do": 'optionOne',
-      "xj352vofupe1dqz9emx13r": 'optionTwo',
-    },
-    questions: ['loxhs1bqm25b708cmbf3g', 'vthrdm985a262al8qx3do'],
-  },
-  mtsamis: {
-    id: 'mtsamis',
-    password: 'xyz123',
-    name: 'Mike Tsamis',
-    avatarURL: null,
-    answers: {
-      "xj352vofupe1dqz9emx13r": 'optionOne',
-      "vthrdm985a262al8qx3do": 'optionTwo',
-      "6ni6ok3ym7mf1p33lnez": 'optionOne'
-    },
-    questions: ['6ni6ok3ym7mf1p33lnez', 'xj352vofupe1dqz9emx13r'],
-  },
-  zoshikanlu: {
-    id: 'zoshikanlu',
-    password: 'pass246',
-    name: 'Zenobia Oshikanlu',
-    avatarURL: null,
-    answers: {
-      "xj352vofupe1dqz9emx13r": 'optionOne',
-    },
-    questions: [],
-  }
-}
+
+
+
 
 let questions = {
   "8xf0y6ziyjabvozdd253nd": {
@@ -157,32 +112,16 @@ export const questionSlice = createSlice({
   reducers: {
     addQuestion: (state, action) => {
       const formattedQuestion = formatQuestion(action.payload)
-      // console.log(formattedQuestion);
-      
-      // // state = current(state)
-      // console.log(state);
       state.value = {
         ...state.value,
         [formattedQuestion.id]: formattedQuestion
       }
-      // console.log(state);
+
     },
     voteQuestion: (state, action) => {
-      // Object.keys(state.question.value).forEach(function (key, index) {
-      //   if(key === id)
-      //     return state.question.value[key];
-      // })
       const qid = action.payload.qid;
       const answer = action.payload.answer;
       const authedUser = action.payload.authedUser;
-      console.log(qid);
-      console.log(answer);
-      console.log(authedUser);
-      console.log(state.value);
-
-      // console.log(current(state));
-      // state = current(state);
-      // console.log(state);
       console.log(state.value);
       state.value = {
         ...state.value,
@@ -227,16 +166,6 @@ export const selectQuestion = (state) => {
   })
   return questions;
 }
-
-// export const getQuestion = (state, id) => {
-//   console.log(id);
-//   let question;
-//   Object.keys(state.question.value).forEach(function (key, index) {
-//     if (key === id)
-//       question = state.question.value[key];
-//   })
-//   return question;
-// }
 
 function generateUID() {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
@@ -283,16 +212,16 @@ export function _saveQuestionAnswer({ authedUser, qid, answer }) {
     }
 
     setTimeout(() => {
-      users = {
-        ...users,
-        [authedUser]: {
-          ...users[authedUser],
-          answers: {
-            ...users[authedUser].answers,
-            [qid]: answer
-          }
-        }
-      }
+      // users = {
+      //   ...users,
+      //   [authedUser]: {
+      //     ...users[authedUser],
+      //     answers: {
+      //       ...users[authedUser].answers,
+      //       [qid]: answer
+      //     }
+      //   }
+      // }
 
       questions = {
         ...questions,
