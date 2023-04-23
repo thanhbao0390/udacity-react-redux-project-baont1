@@ -43,7 +43,7 @@ export function Question() {
                 let rateOptionTwo = total ? Math.round(question.optionTwo.votes.length * 100 / (total)) : 0;
                 return (<div key={question.id} className='qs-list-item'>
                   <div className='qs-list-item-top'>
-                    {/* <div className='qs-item-title'>{question.id}</div> */}
+                    <div className='qs-item-title'>{question.id}</div>
                     <div className='qs-item-author'>Author: {question.author}</div>
                     <div className='qs-item-timestamp'>{new Date(question.timestamp).toLocaleDateString("en-US")} {new Date(question.timestamp).toLocaleTimeString("en-US")}</div>
                   </div>
@@ -74,7 +74,7 @@ export function Question() {
                 let rateOptionTwo = total ? Math.round(question.optionTwo.votes.length * 100 / (total)) : 0;
                 return (<div key={question.id} className='qs-list-item'>
                   <div className='qs-list-item-top'>
-                    {/* <div className='qs-item-title'>{question.id}</div> */}
+                    <div className='qs-item-title'>{question.id}</div>
                     <div className='qs-item-author'>Author: {question.author}</div>
                     <div className='qs-item-timestamp'>{new Date(question.timestamp).toLocaleDateString("en-US")} {new Date(question.timestamp).toLocaleTimeString("en-US")}</div>
                   </div>

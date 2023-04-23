@@ -84,8 +84,12 @@ let questions = {
   },
 }
 
+const questionsInit = localStorage.getItem('questions')
+  ? localStorage.getItem('questions')
+  : questions;
+
 const initialState = {
-  value: questions,
+  value: questionsInit,
   status: 'idle',
 };
 

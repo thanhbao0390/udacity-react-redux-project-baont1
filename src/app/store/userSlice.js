@@ -48,12 +48,12 @@ let users = {
     questions: [],
   }
 }
-const userInfo = localStorage.getItem('userInfo')
-  ? localStorage.getItem('userInfo')
-  : null;
+// const userInfo = localStorage.getItem('userInfo')
+//   ? localStorage.getItem('userInfo')
+//   : null;
 
 const initialState = {
-  userInfo: userInfo,
+  userInfo: null,
   status: 'idle',
 };
 
