@@ -120,3 +120,6 @@
   background-color: rgb(218, 226, 218);
 }
 
+.voted {
+  color: blue;
+}

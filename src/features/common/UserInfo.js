@@ -2,11 +2,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import {
   logout,
-} from '../../app/store/userSlice';
+} from '../../app/store/rootSlice';
 import { useNavigate, } from "react-router-dom";
 
 export default function UserInfo() {
-  const { userInfo } = useSelector((state) => state.user);
+  const { userInfo } = useSelector((state) => state.root);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   

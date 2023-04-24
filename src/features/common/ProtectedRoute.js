@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { Outlet, useNavigate, } from 'react-router-dom'
 
 const ProtectedRoute = () => {
-  const { userInfo } = useSelector((state) => state.user)
+  const { userInfo } = useSelector((state) => state.root)
   const navigate = useNavigate();
 
   useEffect(() => {

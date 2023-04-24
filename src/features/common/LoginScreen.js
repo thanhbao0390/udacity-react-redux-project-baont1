@@ -2,14 +2,17 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   login,
-  usersList,
-} from '../../app/store/userSlice';
+} from '../../app/store/rootSlice';
 import { useNavigate, } from "react-router-dom";
 
 const LoginScreen = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const users = useSelector(usersList);
+  const { users } = useSelector((state) => state.root);
+  let usersList = [];
+  Object.keys(users).forEach(function (key) {
+    usersList.push(users[key]);
+  });
 
   const handleChangeBook = (value) => {
     // check
@@ -28,7 +31,7 @@ const LoginScreen = () => {
         <option value="" disabled>
           Move to...
         </option>
-        {users.map((user) => (
+        {usersList.map((user) => (
           <option key={user.id} value={user.id}>{user.name}</option>
         ))}
 

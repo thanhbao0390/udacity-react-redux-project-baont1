@@ -1,26 +1,28 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import {
-  selectQuestion,
-} from '../../app/store/questionSlice';
-import {
-  Link,
-} from 'react-router-dom';
 import Header from '../common/Header';
 import UserInfo from '../common/UserInfo';
 import Question from '../common/Question';
 
 function QuestionList() {
-  const questions = useSelector(selectQuestion);
-  const { userInfo } = useSelector((state) => state.user)
+  const { userInfo, users, questions } = useSelector((state) => state.root)
   const [tabs, setTabs] = useState(1);
-  const changeTab = (value) => {
-    setTabs(value);
+  const changeTab = (v) => {
+    setTabs(v);
   }
 
-  questions.sort((a, b) => b.timestamp - a.timestamp);
-  let questionsAnswered = questions.filter(question => question.optionOne.votes.includes(userInfo.id) || question.optionTwo.votes.includes(userInfo.id))
-  let questionsUnAnswered = questions.filter(question => !question.optionOne.votes.includes(userInfo.id) && !question.optionTwo.votes.includes(userInfo.id))
+  let answeredList = [];
+  Object.keys(users[userInfo.id].answers).forEach(key => {
+    answeredList.push(key);
+  });
+
+  let questionsList = [];
+  Object.keys(questions).forEach(key => {
+    questionsList.push(questions[key]);
+  });
+  questionsList.sort((a, b) => b.timestamp - a.timestamp);
+  let questionsAnswered = questionsList.filter(question => answeredList.includes(question.id))
+  let questionsUnAnswered = questionsList.filter(question => !answeredList.includes(question.id))
 
   return (
     <div>

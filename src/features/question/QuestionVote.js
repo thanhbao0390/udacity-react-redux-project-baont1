@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  voteQuestion,
-} from '../../app/store/questionSlice';
+  _saveQuestionAnswer,
+} from '../../app/store/rootSlice';
 import {
-  Link,
   useParams,
   useNavigate,
 } from "react-router-dom";
@@ -13,10 +12,10 @@ import UserInfo from "../common/UserInfo";
 
 
 function QuestionVote() {
-  const { userInfo } = useSelector((state) => state.user)
+  const { userInfo } = useSelector((state) => state.root)
   let { id } = useParams();
   const navigate = useNavigate();
-  const question = useSelector((state) => state.question.value[id]);
+  const question = useSelector((state) => state.root.questions[id]);
 
   const dispatch = useDispatch();
   const [vote, setVote] = useState('');
@@ -33,7 +32,7 @@ function QuestionVote() {
     if (!vote) {
       alert('Please fill value text option!');
     } else {
-      dispatch(voteQuestion({ authedUser: userInfo.id, answer: vote, qid: id }))
+      dispatch(_saveQuestionAnswer({ authedUser: userInfo.id, answer: vote, qid: id }))
       navigate("/home");
     }
   }
