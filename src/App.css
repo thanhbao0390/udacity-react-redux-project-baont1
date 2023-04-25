@@ -57,7 +57,6 @@
 .qs-list {
   /* width: 70%; */
   margin: auto;
-  
 }
 
 .qs-list-item {
@@ -122,4 +121,32 @@
 
 .voted {
   color: blue;
+}
+.header {
+  padding-bottom: 30px;
+}
+.qs-detail {
+  display: flex;
+}
+.avatar {
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+}
+
+.qs-vote {
+  display: flex;
+}
+
+.vote-option {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.link {
+  margin-right: 50px;
+}
+
+table, th, td {
+  border: 1px solid gray;
 }

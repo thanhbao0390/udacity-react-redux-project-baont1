@@ -35,6 +35,7 @@ function QuestionAdd() {
     <div>
       <div><UserInfo /></div>
       <Header title='Add Question' link='/home' linkText='List Question' />
+      <div>Would You Rather</div>
       <div className='qs-add'>
         <form >
           <div><div>Option 1: </div><input value={optionOne} onChange={handleChangeOptionOne} size={75} /></div>

@@ -31,7 +31,9 @@ function Question({ flgAnswered, question }) {
           ({question.optionTwo.votes.length}/{total})</div>
         <div>[{question.optionTwo.votes.join(", ")}]</div>
       </div>
-      {!flgAnswered ? <div><Link to={`/vote/${question.id}`}>Vote</Link></div> : ''}
+      <span className='link'><Link to={`/questions/${question.id}`}>Detail</Link></span>
+      {!flgAnswered ? <span className='link'><Link to={`/vote/${question.id}`}>Vote</Link></span> : ''}
+      
     </div>
   );
 }

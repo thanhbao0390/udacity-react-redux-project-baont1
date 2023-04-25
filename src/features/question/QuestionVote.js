@@ -13,9 +13,10 @@ import UserInfo from "../common/UserInfo";
 
 function QuestionVote() {
   const { userInfo } = useSelector((state) => state.root)
-  let { id } = useParams();
+  let { question_id } = useParams();
   const navigate = useNavigate();
-  const question = useSelector((state) => state.root.questions[id]);
+  const question = useSelector((state) => state.root.questions[question_id]);
+  let user = useSelector((state) => state.root.users[question.author]);
 
   const dispatch = useDispatch();
   const [vote, setVote] = useState('');
@@ -32,7 +33,7 @@ function QuestionVote() {
     if (!vote) {
       alert('Please fill value text option!');
     } else {
-      dispatch(_saveQuestionAnswer({ authedUser: userInfo.id, answer: vote, qid: id }))
+      dispatch(_saveQuestionAnswer({ authedUser: userInfo.id, answer: vote, qid: question_id }))
       navigate("/home");
     }
   }
@@ -41,10 +42,12 @@ function QuestionVote() {
     <div>
       <div><UserInfo /></div>
       <Header title='Vote Question' link='/home' linkText='List Question' />
-      <div className='qs-add'>
+      <div className='qs-vote'>
+        <div className='avatar'><img src={'/image/' + user.avatarURL} /></div>
         <form >
-          <div><label><input name='vote' type='radio' value='optionOne' onChange={handleChooseOptionOne} />Option 1: {question.optionOne.text}</label></div>
-          <div><label><input name='vote' type='radio' value='optionTwo' onChange={handleChooseOptionTwo} />Option 2: {question.optionTwo.text}</label></div>
+          <div className='vote-option'>{question.id}</div>
+          <div className='vote-option'><label><input name='vote' type='radio' value='optionOne' onChange={handleChooseOptionOne} />Option 1: {question.optionOne.text}</label></div>
+          <div className='vote-option'><label><input name='vote' type='radio' value='optionTwo' onChange={handleChooseOptionTwo} />Option 2: {question.optionTwo.text}</label></div>
           <input type="button" value="Vote" onClick={() => choose()} />
         </form>
       </div>
