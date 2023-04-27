@@ -150,3 +150,11 @@
 table, th, td {
   border: 1px solid gray;
 }
+
+.header-status {
+  display: flex;
+  margin: 20px 0;
+}
+.cta {
+  margin-left: 20px;
+}

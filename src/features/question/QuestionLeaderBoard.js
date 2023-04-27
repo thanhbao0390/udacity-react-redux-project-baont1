@@ -21,22 +21,26 @@ function QuestionLeaderBoard() {
       <Header title='Leader Board' />
       <div>Would You Rather</div>
       <table>
-        <tr>
-          <th>user’s name</th>
-          <th>user’s avatar</th>
-          <th>number of questions the user add</th>
-          <th>number of questions the user answered</th>
-        </tr>
-        {userList.map((user) => {
-          return (
-            <tr key={user.id}>
-              <td>{user.id}</td>
-              <td><div className='avatar'><img src={'/image/' + user.avatarURL} alt='' /></div></td>
-              <td>{Object.keys(user.questions).length}</td>
-              <td>{Object.keys(user.answers).length}</td>
-            </tr>
-          )
-        })}
+        <thead>
+          <tr>
+            <th>user’s name</th>
+            <th>user’s avatar</th>
+            <th>number of questions the user add</th>
+            <th>number of questions the user answered</th>
+          </tr>
+        </thead>
+        <tbody>
+          {userList.map((user) => {
+            return (
+              <tr key={user.id}>
+                <td>{user.id}</td>
+                <td><div className='avatar'><img src={'/image/' + user.avatarURL} alt='' /></div></td>
+                <td>{Object.keys(user.questions).length}</td>
+                <td>{Object.keys(user.answers).length}</td>
+              </tr>
+            )
+          })}
+        </tbody>
       </table>
     </div>
   );
