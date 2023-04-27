@@ -27,7 +27,7 @@ function QuestionList() {
   return (
     <div>
       <div><UserInfo /></div>
-      <Header title='List Question' link='/add' linkText='Add Question' />
+      <Header title='List Question' />
       <div>
         <div className='qs-tabs'>
           <button onClick={() => changeTab(1)} className={(tabs !== 0) ? 'qs-tabs-unanswered qs-tabs-unanswered-selected' : 'qs-tabs-unanswered'}>Unanswered</button>

@@ -1,26 +1,24 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import {
-  _saveQuestionAnswer,
-} from '../../app/store/rootSlice';
-import {
-  useParams,
-} from "react-router-dom";
 import Header from "../common/Header";
 import UserInfo from "../common/UserInfo";
 
 
 function QuestionLeaderBoard() {
-  const { userInfo, users } = useSelector((state) => state.root)
+  const { users } = useSelector((state) => state.root)
   let userList = [];
   Object.keys(users).forEach(key => {
     userList.push(users[key]);
   });
 
+  userList.sort((a, b) =>
+    (Object.keys(b.answers).length + Object.keys(b.questions).length)
+    - (Object.keys(a.answers).length + Object.keys(a.questions).length));
+
   return (
     <div>
       <div><UserInfo /></div>
-      <Header title='Question detail' link='/home' linkText='List Question' />
+      <Header title='Leader Board' />
       <div>Would You Rather</div>
       <table>
         <tr>
@@ -33,15 +31,12 @@ function QuestionLeaderBoard() {
           return (
             <tr key={user.id}>
               <td>{user.id}</td>
-              <td><div className='avatar'><img src={'/image/' + user.avatarURL} /></div></td>
-              <td>{Object.keys(user.answers).length}</td>
+              <td><div className='avatar'><img src={'/image/' + user.avatarURL} alt='' /></div></td>
+              <td>{Object.keys(user.questions).length}</td>
               <td>{Object.keys(user.answers).length}</td>
             </tr>
-
           )
         })}
-
-        <tr><td></td><td></td><td></td><td></td></tr>
       </table>
     </div>
   );

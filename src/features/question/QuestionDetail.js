@@ -1,9 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import {
-  _saveQuestionAnswer,
-} from '../../app/store/rootSlice';
-import {
   useParams,
 } from "react-router-dom";
 import Header from "../common/Header";
@@ -24,16 +21,14 @@ function QuestionDetail() {
   let votedOptionOne = question.optionOne.votes.includes(userInfo.id) ? 'voted' : ''
   let votedOptionTwo = question.optionTwo.votes.includes(userInfo.id) ? 'voted' : ''
 
-  console.log(user.avatarURL)
-
   return (
     <div>
       <div><UserInfo /></div>
-      <Header title='Question detail' link='/home' linkText='List Question' />
+      <Header title='Question detail' />
       <div>Would You Rather</div>
       <div className='qs-contents-answered'>
         <div className='qs-detail'>
-          <div className='avatar'><img src={'/image/' + user.avatarURL} /></div>
+          <div className='avatar'><img src={'/image/' + user.avatarURL} alt='' /></div>
           <div>
             <div>
               <div className='qs-item-title'>{question.id}</div>

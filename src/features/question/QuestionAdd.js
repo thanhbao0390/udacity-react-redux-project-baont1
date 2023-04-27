@@ -34,7 +34,7 @@ function QuestionAdd() {
   return (
     <div>
       <div><UserInfo /></div>
-      <Header title='Add Question' link='/home' linkText='List Question' />
+      <Header title='Add Question' />
       <div>Would You Rather</div>
       <div className='qs-add'>
         <form >

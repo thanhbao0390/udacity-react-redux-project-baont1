@@ -41,9 +41,9 @@ function QuestionVote() {
   return (
     <div>
       <div><UserInfo /></div>
-      <Header title='Vote Question' link='/home' linkText='List Question' />
+      <Header title='Vote Question' />
       <div className='qs-vote'>
-        <div className='avatar'><img src={'/image/' + user.avatarURL} /></div>
+        <div className='avatar'><img src={'/image/' + user.avatarURL} alt='' /></div>
         <form >
           <div className='vote-option'>{question.id}</div>
           <div className='vote-option'><label><input name='vote' type='radio' value='optionOne' onChange={handleChooseOptionOne} />Option 1: {question.optionOne.text}</label></div>

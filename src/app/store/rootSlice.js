@@ -177,17 +177,18 @@ export const rootSlice = createSlice({
     },
     _saveQuestion: (state, action) => {
       const formattedQuestion = formatQuestion(action.payload)
+      const authedUser = action.payload.author;
 
-      // state.users = {
-      //   ...state.users,
-      //   [authedUser]: {
-      //     ...state.users[authedUser],
-      //     answers: {
-      //       ...state.users[authedUser].answers,
-      //       [qid]: answer
-      //     }
-      //   }
-      // }
+      state.users = {
+        ...state.users,
+        [authedUser]: {
+          ...state.users[authedUser],
+          questions: [
+            ...state.users[authedUser].questions,
+            formattedQuestion.id
+          ]
+        }
+      }
 
       state.questions = {
         ...state.questions,
