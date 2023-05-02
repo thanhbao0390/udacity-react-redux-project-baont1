@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  _saveQuestionAnswer,
+  saveQuestionAnswerAsync,
 } from '../../app/store/rootSlice';
 import {
   useParams,
@@ -30,12 +30,16 @@ function QuestionVote() {
 
   const choose = () => {
     // check
-    if (!vote) {
-      alert('Please fill value text option!');
-    } else {
-      dispatch(_saveQuestionAnswer({ authedUser: userInfo.id, answer: vote, qid: question_id }))
-      navigate("/home");
-    }
+    dispatch(saveQuestionAnswerAsync({ authedUser: userInfo.id, answer: vote, qid: question_id }))
+      .unwrap()
+      .then((originalPromiseResult) => {
+        // handle result here
+        navigate("/home");
+      })
+      .catch((rejectedValueOrSerializedError) => {
+        // handle error here
+        alert(rejectedValueOrSerializedError.message);
+      });
   }
 
   return (

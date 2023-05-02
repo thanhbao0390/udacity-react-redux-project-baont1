@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  _saveQuestion,
+  saveQuestionAsync,
 } from '../../app/store/rootSlice';
 import { useNavigate } from "react-router-dom";
 import Header from "../common/Header";
@@ -23,12 +23,17 @@ function QuestionAdd() {
 
   const add = () => {
     // check
-    if (!optionOne || !optionTwo) {
-      alert('Please fill value text option!');
-    } else {
-      dispatch(_saveQuestion({ optionOneText: optionOne, optionTwoText: optionTwo, author: userInfo.id }))
+    dispatch(saveQuestionAsync({ optionOneText: optionOne, optionTwoText: optionTwo, author: userInfo.id }))
+    .unwrap()
+    .then((originalPromiseResult) => {
+      // handle result here
       navigate("/home");
-    }
+    })
+    .catch((rejectedValueOrSerializedError) => {
+      // handle error here
+      alert(rejectedValueOrSerializedError.message);
+    });
+    
   }
 
   return (

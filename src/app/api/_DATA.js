@@ -162,6 +162,7 @@ function formatQuestion ({ optionOneText, optionTwoText, author }) {
 
 export function _saveQuestion (question) {
   return new Promise((resolve, reject) => {
+
     if (!question.optionOneText || !question.optionTwoText || !question.author) {
       reject("Please provide optionOneText, optionTwoText, and author");
     }
@@ -171,6 +172,18 @@ export function _saveQuestion (question) {
       questions = {
         ...questions,
         [formattedQuestion.id]: formattedQuestion
+      }
+
+      const authedUser = formattedQuestion.author;
+      users = {
+        ...users,
+        [authedUser]: {
+          ...users[authedUser],
+          questions: [
+            ...users[authedUser].questions,
+            formattedQuestion.id
+          ]
+        }
       }
 
       resolve(formattedQuestion)
@@ -196,16 +209,16 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
         }
       }
 
-      questions = {
-        ...questions,
-        [qid]: {
-          ...questions[qid],
-          [answer]: {
-            ...questions[qid][answer],
-            votes: questions[qid][answer].votes.concat([authedUser])
-          }
-        }
-      }
+      // questions = {
+      //   ...questions,
+      //   [qid]: {
+      //     ...questions[qid],
+      //     [answer]: {
+      //       ...questions[qid][answer],
+      //       votes: questions[qid][answer].votes.concat([authedUser])
+      //     }
+      //   }
+      // }
 
       resolve(true)
     }, 500)
