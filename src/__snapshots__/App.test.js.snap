@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`screen login renders correctly 1`] = `
+"<body>
+                        <div>
+                        <div
+                            class=\\"App\\"
+                        >
+                            <div
+                            class=\\"login-contents\\"
+                            >
+                            <label>
+                                Choose user to login:
+                            </label>
+                            <select>
+                                <option
+                                disabled=\\"\\"
+                                value=\\"\\"
+                                >
+                                Move to...
+                                </option>
+                                <option
+                                value=\\"sarahedo\\"
+                                >
+                                Sarah Edo
+                                </option>
+                                <option
+                                value=\\"tylermcginnis\\"
+                                >
+                                Tyler McGinnis
+                                </option>
+                                <option
+                                value=\\"mtsamis\\"
+                                >
+                                Mike Tsamis
+                                </option>
+                                <option
+                                value=\\"zoshikanlu\\"
+                                >
+                                Zenobia Oshikanlu
+                                </option>
+                            </select>
+                            </div>
+                        </div>
+                        </div>
+                    </body>"
+`;

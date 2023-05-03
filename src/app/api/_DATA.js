@@ -209,17 +209,6 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
         }
       }
 
-      // questions = {
-      //   ...questions,
-      //   [qid]: {
-      //     ...questions[qid],
-      //     [answer]: {
-      //       ...questions[qid][answer],
-      //       votes: questions[qid][answer].votes.concat([authedUser])
-      //     }
-      //   }
-      // }
-
       resolve(true)
     }, 500)
   })
