@@ -43,9 +43,9 @@ function QuestionAdd() {
       <div>Would You Rather</div>
       <div className='qs-add'>
         <form >
-          <div className='qs-item-option'><div>Option 1: </div><input value={optionOne} onChange={handleChangeOptionOne} size={75} /></div>
-          <div className='qs-item-option'><div>Option 2: </div><input value={optionTwo} onChange={handleChangeOptionTwo} size={75} /></div>
-          <input type="button" value="Save" onClick={() => add()} />
+          <div className='qs-item-option'><div>Option 1: </div><input data-testid='optionOne' value={optionOne} onChange={handleChangeOptionOne} size={75} /></div>
+          <div className='qs-item-option'><div>Option 2: </div><input data-testid='optionTwo' value={optionTwo} onChange={handleChangeOptionTwo} size={75} /></div>
+          <input data-testid='save' type="button" value="Save" onClick={() => add()} />
         </form>
       </div>
     </div>

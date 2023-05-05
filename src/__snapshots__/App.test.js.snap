@@ -1,47 +1,134 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`screen login renders correctly 1`] = `
-"<body>
-                        <div>
-                        <div
-                            class=\\"App\\"
-                        >
-                            <div
-                            class=\\"login-contents\\"
-                            >
-                            <label>
-                                Choose user to login:
-                            </label>
-                            <select>
-                                <option
-                                disabled=\\"\\"
-                                value=\\"\\"
-                                >
-                                Move to...
-                                </option>
-                                <option
-                                value=\\"sarahedo\\"
-                                >
-                                Sarah Edo
-                                </option>
-                                <option
-                                value=\\"tylermcginnis\\"
-                                >
-                                Tyler McGinnis
-                                </option>
-                                <option
-                                value=\\"mtsamis\\"
-                                >
-                                Mike Tsamis
-                                </option>
-                                <option
-                                value=\\"zoshikanlu\\"
-                                >
-                                Zenobia Oshikanlu
-                                </option>
-                            </select>
-                            </div>
-                        </div>
-                        </div>
-                    </body>"
+exports[`Login Page Test will show Login Page 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="login-contents"
+      >
+        <label>
+          Choose user to login: 
+        </label>
+        <select>
+          <option
+            disabled=""
+            value=""
+          >
+            Move to...
+          </option>
+          <option
+            value="sarahedo"
+          >
+            Sarah Edo
+          </option>
+          <option
+            value="tylermcginnis"
+          >
+            Tyler McGinnis
+          </option>
+          <option
+            value="mtsamis"
+          >
+            Mike Tsamis
+          </option>
+          <option
+            value="zoshikanlu"
+          >
+            Zenobia Oshikanlu
+          </option>
+        </select>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="login-contents"
+    >
+      <label>
+        Choose user to login: 
+      </label>
+      <select>
+        <option
+          disabled=""
+          value=""
+        >
+          Move to...
+        </option>
+        <option
+          value="sarahedo"
+        >
+          Sarah Edo
+        </option>
+        <option
+          value="tylermcginnis"
+        >
+          Tyler McGinnis
+        </option>
+        <option
+          value="mtsamis"
+        >
+          Mike Tsamis
+        </option>
+        <option
+          value="zoshikanlu"
+        >
+          Zenobia Oshikanlu
+        </option>
+      </select>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;

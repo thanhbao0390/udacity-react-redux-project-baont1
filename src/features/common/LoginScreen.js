@@ -19,15 +19,19 @@ const LoginScreen = () => {
     if (!value) {
       alert('Please choose user!');
     } else {
-      dispatch(login({ id: value }));
-      //alert('loged');
-      navigate("/home");
+      dispatch(login({ id: value }))
+      .unwrap()
+      .then(() => {
+        // handle result here
+        navigate("/home");
+      });
     }
   }
 
   return (
     <div className='login-contents'>
-      <label>Choose user to login: </label><select onChange={e => { handleChangeBook(e.target.value); }} value={''}>
+      <label>Choose user to login: </label>
+      <select onChange={e => { handleChangeBook(e.target.value); }} value={''}>
         <option value="" disabled>
           Move to...
         </option>

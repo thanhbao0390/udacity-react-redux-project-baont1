@@ -2,62 +2,13 @@ import renderer from 'react-test-renderer';
 import { _saveQuestion, _saveQuestionAnswer } from './app/api/_DATA';
 
 import React from 'react';
-import { render } from '@testing-library/react';
+import { fireEvent, render, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 import App from './App';
-
-describe('screen login', () => {
-    let loginOutput = `<body>
-                        <div>
-                        <div
-                            class="App"
-                        >
-                            <div
-                            class="login-contents"
-                            >
-                            <label>
-                                Choose user to login:
-                            </label>
-                            <select>
-                                <option
-                                disabled=""
-                                value=""
-                                >
-                                Move to...
-                                </option>
-                                <option
-                                value="sarahedo"
-                                >
-                                Sarah Edo
-                                </option>
-                                <option
-                                value="tylermcginnis"
-                                >
-                                Tyler McGinnis
-                                </option>
-                                <option
-                                value="mtsamis"
-                                >
-                                Mike Tsamis
-                                </option>
-                                <option
-                                value="zoshikanlu"
-                                >
-                                Zenobia Oshikanlu
-                                </option>
-                            </select>
-                            </div>
-                        </div>
-                        </div>
-                    </body>`
-    it('renders correctly', () => {
-        const tree = renderer
-            .create(loginOutput)
-            .toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-});
+import { BrowserRouter } from "react-router-dom";
+import LoginScreen from "./features/common/LoginScreen";
+import QuestionAdd from './features/question/QuestionAdd';
 
 describe('_saveQuestion', () => {
     it('will return formatted question if all data is passed correctly', async () => {
@@ -100,4 +51,42 @@ describe('_saveQuestionAnswer', () => {
         };
         await expect(_saveQuestionAnswer(wrongInfo)).rejects.toEqual('Please provide authedUser, qid, and answer');
     });
+})
+
+describe('Login Page Test', () => {
+    it('will show Login Page', async () => {
+        const screen = render(
+            <Provider store={store}>
+                <BrowserRouter>
+                    <LoginScreen />
+                </BrowserRouter>
+            </Provider>
+        );
+
+        expect(screen).toMatchSnapshot();
+    });
+})
+
+describe('Add Question Test', () => {
+    it('show screen Add Question', async () => {
+        const screen = render(
+            <Provider store={store}>
+                <BrowserRouter>
+                    <QuestionAdd />
+                </BrowserRouter>
+            </Provider>
+        );
+
+        const optionOne = screen.getByTestId('optionOne');
+        const optionTwo = screen.getByTestId('optionTwo');
+        expect(optionOne.value).toMatch("");
+        expect(optionTwo.value).toMatch("");
+
+        fireEvent.change(optionOne, { target: { value: 'optionOne test' } });
+        fireEvent.change(optionTwo, { target: { value: 'optionTwo test' } });
+        expect(optionOne.value).toMatch("optionOne test");
+        expect(optionTwo.value).toMatch("optionTwo test");
+
+    });
+
 })
