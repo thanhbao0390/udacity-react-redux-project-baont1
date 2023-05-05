@@ -19,12 +19,8 @@ const LoginScreen = () => {
     if (!value) {
       alert('Please choose user!');
     } else {
-      dispatch(login({ id: value }))
-      .unwrap()
-      .then(() => {
-        // handle result here
-        navigate("/home");
-      });
+      dispatch(login({ id: value }));
+      navigate("/home");
     }
   }
 
