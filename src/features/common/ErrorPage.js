@@ -4,10 +4,9 @@ export default function ErrorPage() {
 
   return (
     <div id="error-page">
-      <h1>Oops!</h1>
-      <p>Sorry, an unexpected error has occurred.</p>
-      <p>
-      </p>
+      <div>
+        <h1>404 Not Available</h1>
+      </div>
       <div className="qs-btnAdd">
         <Link to={`/home`}>List Question</Link>
       </div>

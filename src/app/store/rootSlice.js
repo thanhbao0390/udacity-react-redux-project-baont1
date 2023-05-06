@@ -135,6 +135,7 @@ const initialState = {
   questions: questions,
   userInfo: null,
   users: users,
+  path: null,
   status: 'idle',
 };
 
@@ -171,6 +172,10 @@ export const rootSlice = createSlice({
       } else {
         state.userInfo = null
       }
+    },
+    historyPath: (state, action) => {
+      let path = action.payload.path;
+      state.path = path;
     },
 
   },
@@ -240,6 +245,6 @@ export const rootSlice = createSlice({
   },
 });
 
-export const { logout, login, } = rootSlice.actions;
+export const { logout, login, historyPath } = rootSlice.actions;
 
 export default rootSlice.reducer;

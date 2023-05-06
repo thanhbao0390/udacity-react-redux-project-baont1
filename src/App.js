@@ -9,14 +9,12 @@ import ErrorPage from "./features/common/ErrorPage";
 import LoginScreen from "./features/common/LoginScreen";
 import ProtectedRoute from "./features/common/ProtectedRoute";
 import RootPage from "./features/common/RootPage";
-
 import {
   Route,
   createBrowserRouter,
   createRoutesFromElements,
   RouterProvider,
 } from 'react-router-dom';
-
 
 function App() {
   const router = createBrowserRouter(

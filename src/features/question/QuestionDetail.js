@@ -5,14 +5,17 @@ import {
 } from "react-router-dom";
 import Header from "../common/Header";
 import UserInfo from "../common/UserInfo";
+import ErrorPage from "../common/ErrorPage";
 
 
 function QuestionDetail() {
   const { userInfo } = useSelector((state) => state.root)
   let { question_id } = useParams();
   const question = useSelector((state) => state.root.questions[question_id]);
-
-  let user = useSelector((state) => state.root.users[question.author]);
+  let user = useSelector((state) => state.root.users[question?.author || '']);
+  if (!question) {
+    return (<ErrorPage />)
+  }
 
   let total = question.optionOne.votes.length + question.optionTwo.votes.length;
   let rateOptionOne = total ? Math.round(question.optionOne.votes.length * 100 / (total)) : 0;

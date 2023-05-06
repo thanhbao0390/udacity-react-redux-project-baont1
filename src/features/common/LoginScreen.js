@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   login,
 } from '../../app/store/rootSlice';
-import { useNavigate, } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const LoginScreen = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { users } = useSelector((state) => state.root);
+  const { users, path } = useSelector((state) => state.root);
   let usersList = [];
   Object.keys(users).forEach(function (key) {
     usersList.push(users[key]);
@@ -20,7 +20,7 @@ const LoginScreen = () => {
       alert('Please choose user!');
     } else {
       dispatch(login({ id: value }));
-      navigate("/home");
+      navigate(path || "/home");
     }
   }
 

@@ -1,18 +1,22 @@
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react';
-import { Outlet, useNavigate, } from 'react-router-dom'
+import { Outlet, useNavigate, useLocation } from 'react-router-dom'
+import {
+  historyPath,
+} from '../../app/store/rootSlice';
 
 const ProtectedRoute = () => {
   const { userInfo } = useSelector((state) => state.root)
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const location = useLocation();
 
   useEffect(() => {
     if (!userInfo) {
-      navigate("/login");
+      navigate("/login", dispatch(historyPath({ path: location.pathname })));
       return;
     }
-  }, [userInfo, navigate]);
-  
+  }, [userInfo, navigate, dispatch, location ]);
   
   if (!userInfo) {
     return '';
