@@ -26,7 +26,7 @@ const LoginScreen = () => {
 
   return (
     <div className='login-contents'>
-      <label>Choose user to login: </label>
+      <label data-testid='user-label' >Choose user to login: </label>
       <select onChange={e => { handleChangeBook(e.target.value); }} value={''}>
         <option value="" disabled>
           Move to...
